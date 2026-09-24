@@ -1,256 +1,157 @@
+/* ---------- Warna & font ---------- */
+:root {
+  --halaman: #c9d0d4;
+  --badan: #38444e;
+  --badan-tepi: #2a343c;
+  --lcd: #c3cfae;
+  --lcd-teks: #1c2617;
+  --fokus: #ffd98a;
+
+  --font-teks: "Archivo", system-ui, sans-serif;
+  --font-angka: "Chivo Mono", ui-monospace, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --halaman: #1d2328;
+    --badan: #2c363e;
+    --badan-tepi: #1b2227;
+  }
+}
+
+/* ---------- Dasar ---------- */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: #222;
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-/* Variabel warna, biar gampang diganti-ganti nanti */
-:root {
-  --warna-utama: #2563eb; /* biru */
-  --warna-gelap: #1e293b; /* untuk footer */
-  --warna-teks-terang: #f1f5f9;
-  --warna-abu: #94a3b8;
-}
-
-/* Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  z-index: 1000;
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Logo */
-.navbar-logo {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--warna-utama);
-}
-
-.navbar-logo span {
-  color: #222;
-}
-
-/* Menu (daftar link) */
-.navbar-list {
-  display: flex;
-  gap: 32px;
-}
-
-.navbar-link {
-  font-weight: 500;
-  padding: 8px 4px;
-  transition: color 0.2s ease;
-  position: relative;
-}
-
-.navbar-link:hover {
-  color: var(--warna-utama);
-}
-
-/* Garis bawah animasi saat hover, biar terlihat lebih hidup */
-.navbar-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0%;
-  height: 2px;
-  background-color: var(--warna-utama);
-  transition: width 0.25s ease;
-}
-
-.navbar-link:hover::after {
-  width: 100%;
-}
-
-/* Tombol hamburger, default disembunyikan di layar besar */
-.navbar-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.navbar-toggle .bar {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background-color: var(--warna-gelap);
-  border-radius: 2px;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-}
-
-/* Animasi hamburger berubah jadi tanda silang (X) saat menu aktif */
-.navbar-toggle.active .bar:nth-child(1) {
-  transform: translateY(8.5px) rotate(45deg);
-}
-
-.navbar-toggle.active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.navbar-toggle.active .bar:nth-child(3) {
-  transform: translateY(-8.5px) rotate(-45deg);
-}
-
-/* Section Placeholder (Hero - CTA Menyusul */
-
-/* Footer */
-.footer {
-  background-color: var(--warna-gelap);
-  color: var(--warna-teks-terang);
-  margin-top: 60px;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 48px 24px 24px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 16px;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 32px;
+  place-items: center;
+  background: var(--halaman);
+  font-family: var(--font-teks);
 }
 
-.footer-about p {
-  color: var(--warna-abu);
-  margin-top: 12px;
-  max-width: 320px;
+button:focus-visible {
+  outline: 3px solid var(--fokus);
+  outline-offset: 2px;
 }
 
-.footer-logo {
-  font-size: 1.3rem;
-  color: #ffffff;
+/* ---------- Badan kalkulator ---------- */
+.kalkulator {
+  width: min(100%, 340px);
+  padding: 18px;
+  background: var(--badan);
+  border-radius: 24px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 0 var(--badan-tepi),
+    0 22px 34px -20px rgba(10, 18, 24, 0.6);
 }
 
-.footer-logo span {
-  color: var(--warna-utama);
+/* ---------- Layar ---------- */
+.layar {
+  min-height: 112px;
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--lcd);
+  color: var(--lcd-teks);
+  border-radius: 10px;
+  box-shadow: inset 0 2px 6px rgba(15, 25, 10, 0.32);
+  text-align: right;
+  font-family: var(--font-angka);
 }
 
-.footer-links h4,
-.footer-social h4 {
-  margin-bottom: 16px;
-  font-size: 1rem;
-  color: #ffffff;
+.layar-rumus {
+  min-height: 1.5em;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.6;
+  white-space: nowrap;
 }
 
-.footer-links,
-.footer-social {
-  align-self: start;
+.layar-angka {
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.footer-links ul,
-.footer-social ul {
-  padding-left: 0;
+.layar-angka.error {
+  font-size: 18px !important;
+  line-height: 1.5;
+  white-space: normal;
 }
 
-.footer-links ul li,
-.footer-social ul li {
-  margin-bottom: 10px;
+/* ---------- Tombol ---------- */
+.tombol-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 }
 
-.footer-links a,
-.footer-social a {
-  color: var(--warna-abu);
-  transition: color 0.2s ease;
+/* Tiap jenis tombol cukup mengganti 3 variabel: --warna, --tepi, --teks */
+.tombol {
+  --warna: #eceeea;
+  --tepi: #b4b9b3;
+  --teks: #232a2f;
+
+  height: 58px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--warna);
+  color: var(--teks);
+  box-shadow: 0 4px 0 var(--tepi);
+  font-family: var(--font-teks);
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 70ms,
+    box-shadow 70ms;
 }
 
-.footer-links a:hover,
-.footer-social a:hover {
-  color: #ffffff;
+/* Efek "tertekan" saat diklik atau saat ditekan lewat keyboard */
+.tombol:active,
+.tombol.ditekan {
+  transform: translateY(4px);
+  box-shadow: none;
 }
 
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-  padding: 16px 24px;
-  font-size: 0.85rem;
-  color: var(--warna-abu);
+.tombol-fn {
+  --warna: #a8b4bc;
+  --tepi: #7d8a93;
+  --teks: #1f292f;
 }
 
-/* Responsive (Layar Kecil / Handphone) */
-@media (max-width: 768px) {
-  /* Tombol hamburger jadi terlihat */
-  .navbar-toggle {
-    display: flex;
-  }
+.tombol-op {
+  --warna: #4f6f8f;
+  --tepi: #365069;
+  --teks: #fff;
+  font-size: 26px;
+}
 
-  /* Menu jadi dropdown vertikal, default disembunyikan */
-  .navbar-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.08);
+.tombol-sama {
+  --warna: #e3a233;
+  --tepi: #a8721a;
+  --teks: #2a1c05;
+  font-size: 26px;
+}
 
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
+/* Operator yang sedang menunggu angka kedua */
+.tombol-op.aktif {
+  --warna: #fff;
+  --teks: #4f6f8f;
+}
 
-  /* Class "active" ditambahkan lewat main.js saat tombol diklik */
-  .navbar-menu.active {
-    max-height: 400px;
-  }
-
-  .navbar-list {
-    flex-direction: column;
-    gap: 0;
-    padding: 8px 24px 16px;
-  }
-
-  .navbar-list li {
-    border-bottom: 1px solid #eee;
-  }
-
-  .navbar-link {
-    display: block;
-    padding: 14px 4px;
-  }
-
-  /* Footer jadi satu kolom di layar kecil */
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-about p {
-    margin-left: auto;
-    margin-right: auto;
+@media (prefers-reduced-motion: reduce) {
+  .tombol {
+    transition: none;
   }
 }

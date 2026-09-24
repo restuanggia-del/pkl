@@ -1,40 +1,41 @@
-// Navbar Responsive: Toggle Menu & Close Menu Otomatis
+const daftarAksi = {
+  angka: tekanAngka,
+  koma: tekanKoma,
+  operator: tekanOperator,
+  samaDengan: tekanSamaDengan,
+  persen: tekanPersen,
+  ubahTanda: ubahTanda,
+  hapusSatu: hapusSatu,
+  hapusSemua: hapusSemua,
+};
 
-// Ambil elemen tombol hamburger dan menu navbar
-const navbarToggle = document.getElementById("navbarToggle");
-const navbarMenu = document.getElementById("navbarMenu");
+// ---------- Klik mouse / sentuh ----------
+document.querySelector(".tombol-grid").addEventListener("click", (e) => {
+  const tombol = e.target.closest(".tombol");
+  if (!tombol) return;
 
-// Saat tombol hamburger diklik:
-// - toggle class "active" di tombol (biar animasi jadi tanda X)
-// - toggle class "active" di menu (biar menu muncul/hilang)
-navbarToggle.addEventListener("click", () => {
-  navbarToggle.classList.toggle("active");
-  navbarMenu.classList.toggle("active");
+  if (pesanError) hapusSemua(); // setelah error, mulai dari awal
+
+  const jalankan = daftarAksi[tombol.dataset.aksi];
+  jalankan(tombol.dataset.nilai);
 });
 
-// Ambil semua link yang ada di dalam menu navbar
-const navbarLinks = document.querySelectorAll(".navbar-link");
+// ---------- Keyboard ----------
+// Beberapa tombol keyboard punya "kembaran"
+const kembaran = { x: "*", "=": "Enter", ".": ",", Delete: "Escape" };
 
-// Supaya saat salah satu menu di-klik (khusus di layar kecil),
-// menu otomatis tertutup lagi
-navbarLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    navbarToggle.classList.remove("active");
-    navbarMenu.classList.remove("active");
-  });
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return; // biarkan Ctrl+C, dll.
+
+  const key = kembaran[e.key] || e.key;
+  const semuaTombol = document.querySelectorAll("[data-key]");
+  const tombol = [...semuaTombol].find((t) => t.dataset.key === key);
+  if (!tombol) return;
+
+  e.preventDefault(); // cegah "/" membuka pencarian & Enter menekan dua kali
+  tombol.click();
+
+  // Efek tertekan singkat
+  tombol.classList.add("ditekan");
+  setTimeout(() => tombol.classList.remove("ditekan"), 100);
 });
-
-// 2. FOOTER: TAHUN OTOMATIS
-
-// Supaya tulisan "hak cipta" di footer selalu menampilkan
-// tahun sekarang tanpa perlu diubah manual tiap tahun
-const tahunSekarang = document.getElementById("tahunSekarang");
-if (tahunSekarang) {
-  tahunSekarang.textContent = new Date().getFullYear();
-}
-
-// =======================================
-// Materi selanjutnya:
-// Interaksi untuk Hero, Tentang, Portfolio,
-// Blog, dan CTA akan ditambahkan di sini.
-// =======================================

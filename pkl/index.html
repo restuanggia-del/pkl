@@ -3,94 +3,117 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Saya</title>
+    <title>Kalkulator</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- Navbar -->
-    <header class="navbar">
-      <div class="navbar-container">
-        <!-- Logo / Nama -->
-        <a href="#" class="navbar-logo">Nama<span>Saya</span></a>
+    <main class="kalkulator">
+      <!-- Layar -->
+      <div class="layar">
+        <div class="layar-rumus" id="layar-rumus"></div>
+        <div class="layar-angka" id="layar-angka">0</div>
+      </div>
 
-        <!-- Menu untuk layar besar -->
-        <nav class="navbar-menu" id="navbarMenu">
-          <ul class="navbar-list">
-            <li><a href="#hero" class="navbar-link">Beranda</a></li>
-            <li><a href="#tentang" class="navbar-link">Tentang</a></li>
-            <li><a href="#portfolio" class="navbar-link">Portfolio</a></li>
-            <li><a href="#blog" class="navbar-link">Blog</a></li>
-            <li><a href="#cta" class="navbar-link">Kontak</a></li>
-          </ul>
-        </nav>
+      <div class="tombol-grid">
+        <button
+          class="tombol tombol-fn"
+          data-aksi="hapusSemua"
+          data-key="Escape"
+        >
+          AC
+        </button>
+        <button
+          class="tombol tombol-fn"
+          data-aksi="hapusSatu"
+          data-key="Backspace"
+        >
+          ⌫
+        </button>
+        <button class="tombol tombol-fn" data-aksi="persen" data-key="%">
+          %
+        </button>
+        <button
+          class="tombol tombol-op"
+          data-aksi="operator"
+          data-nilai="bagi"
+          data-key="/"
+        >
+          ÷
+        </button>
 
-        <!-- Tombol Hamburger (khusus tampil di layar kecil) -->
-        <button class="navbar-toggle" id="navbarToggle" aria-label="Buka menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+        <button class="tombol" data-aksi="angka" data-nilai="7" data-key="7">
+          7
+        </button>
+        <button class="tombol" data-aksi="angka" data-nilai="8" data-key="8">
+          8
+        </button>
+        <button class="tombol" data-aksi="angka" data-nilai="9" data-key="9">
+          9
+        </button>
+        <button
+          class="tombol tombol-op"
+          data-aksi="operator"
+          data-nilai="kali"
+          data-key="*"
+        >
+          ×
+        </button>
+
+        <button class="tombol" data-aksi="angka" data-nilai="4" data-key="4">
+          4
+        </button>
+        <button class="tombol" data-aksi="angka" data-nilai="5" data-key="5">
+          5
+        </button>
+        <button class="tombol" data-aksi="angka" data-nilai="6" data-key="6">
+          6
+        </button>
+        <button
+          class="tombol tombol-op"
+          data-aksi="operator"
+          data-nilai="kurang"
+          data-key="-"
+        >
+          −
+        </button>
+
+        <button class="tombol" data-aksi="angka" data-nilai="1" data-key="1">
+          1
+        </button>
+        <button class="tombol" data-aksi="angka" data-nilai="2" data-key="2">
+          2
+        </button>
+        <button class="tombol" data-aksi="angka" data-nilai="3" data-key="3">
+          3
+        </button>
+        <button
+          class="tombol tombol-op"
+          data-aksi="operator"
+          data-nilai="tambah"
+          data-key="+"
+        >
+          +
+        </button>
+
+        <button class="tombol tombol-fn" data-aksi="ubahTanda">±</button>
+        <button class="tombol" data-aksi="angka" data-nilai="0" data-key="0">
+          0
+        </button>
+        <button class="tombol" data-aksi="koma" data-key=",">,</button>
+        <button
+          class="tombol tombol-sama"
+          data-aksi="samaDengan"
+          data-key="Enter"
+        >
+          =
         </button>
       </div>
-    </header>
+    </main>
 
-    <!-- Hero Section -->
-    <section id="hero"></section>
-
-    <!-- Tentang Saya -->
-    <section id="tentang"></section>
-
-    <!-- Portfolio -->
-    <section id="portfolio"></section>
-
-    <!-- Blog -->
-    <section id="blog"></section>
-
-    <!-- CTA (Call to Action) -->
-    <section id="cta"></section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-container">
-        <!-- Kolom 1: Tentang singkat -->
-        <div class="footer-about">
-          <h3 class="footer-logo">Nama<span>Saya</span></h3>
-          <p>
-            Sebuah website portfolio sederhana yang dibuat untuk belajar HTML,
-            CSS, dan JavaScript.
-          </p>
-        </div>
-
-        <!-- Kolom 2: Navigasi cepat -->
-        <div class="footer-links">
-          <h4>Navigasi</h4>
-          <ul>
-            <li><a href="#hero">Beranda</a></li>
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#blog">Blog</a></li>
-          </ul>
-        </div>
-
-        <!-- Kolom 3: Sosial media -->
-        <div class="footer-social">
-          <h4>Ikuti Saya</h4>
-          <ul>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">GitHub</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Baris hak cipta -->
-      <div class="footer-bottom">
-        <p>
-          &copy; <span id="tahunSekarang"></span> Nama Saya. Semua hak cipta
-          dilindungi.
-        </p>
-      </div>
-    </footer>
-
+    <!-- Urutan penting: file yang dipakai file lain harus dimuat lebih dulu -->
+    <script src="js/hitung.js"></script>
+    <script src="js/layar.js"></script>
+    <script src="js/kalkulator.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
